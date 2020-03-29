@@ -1,0 +1,82 @@
+{{>header}}
+<div>
+  {{>nav}}
+  <main>
+    <div class="max-w-7xl mx-auto pt-6 sm:px-6 lg:px-8">
+      <!-- Replace with your content -->
+      <div class="px-4 pt-6 sm:px-0">
+        <div class="border-4 border-dashed border-gray-200 rounded-lg h-96">
+          
+
+            
+
+            <div class="min-h-screen flex justify-center bg-gray-50 pb-12 px-4 sm:px-6 lg:px-8">
+              <div class="max-w-md w-full">
+                <div>
+                  <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+                    Get today's weather Information
+                  </h2>
+                  <p class="mt-2 text-center text-sm leading-5 text-gray-600">
+                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                      Provide your Address and you are sit to go
+                    </a>
+                  </p>
+                </div>
+                <form class="mt-8" action="/weather" method="GET">
+                  <div class="rounded-md shadow-sm">
+                    <div>
+                      <input aria-label="Your address" name="address" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Address" />
+                    </div>
+                    
+                  </div>
+
+                  <div class="mt-6">
+                    <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                      <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                        <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                        </svg>
+                      </span>
+                      Fetch weather
+                    </button>
+                  </div>
+                </form>
+
+            <span class="text-red-700">{{ error }}</span>
+            <span class="text-gray-700">{{ location }}</span> 
+            {{ forecast }}
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <!-- /End replace -->
+    </div>
+  </main>
+</div>
+
+
+
+
+<script>
+  fetch('http://localhost:3000/weather?address=boston').then((response) => {
+    response.json().then((data) => {
+      if(data.error){
+        console.log(data.error)
+      }else {
+        console.log(data.location);
+      }
+    })
+  });
+</script>
+
+</body>
+
+</html>
